@@ -1,4 +1,4 @@
-pub type Tokens {
+pub type Token {
   Number(Float)
   Operation(Operation)
   OpenBracket
