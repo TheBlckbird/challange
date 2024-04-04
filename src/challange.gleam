@@ -1,7 +1,10 @@
 import gleam/io
+import lexer/lexer
 
 pub fn main() {
-  let input = "(3 + 4) * 5"
+  let input = "(3 + 5) * 7"
 
-  io.println("Hello from challange!")
+  input
+  |> lexer.lexer
+  |> io.debug
 }
