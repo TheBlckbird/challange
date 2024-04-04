@@ -26,42 +26,42 @@ fn lexer_loop(
         "+" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Add)]),
+            list.append(tokens, [tokens.Operator(tokens.Add)]),
           )
         "-" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Sub)]),
+            list.append(tokens, [tokens.Operator(tokens.Sub)]),
           )
         "*" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Mul)]),
+            list.append(tokens, [tokens.Operator(tokens.Mul)]),
           )
         "/" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Div)]),
+            list.append(tokens, [tokens.Operator(tokens.Div)]),
           )
         "!" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Fact)]),
+            list.append(tokens, [tokens.Operator(tokens.Fact)]),
           )
         "%" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Mod)]),
+            list.append(tokens, [tokens.Operator(tokens.Mod)]),
           )
         "^" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Pow)]),
+            list.append(tokens, [tokens.Operator(tokens.Pow)]),
           )
         "v" ->
           lexer_loop(
             new_remaining,
-            list.append(tokens, [tokens.Operation(tokens.Tetr)]),
+            list.append(tokens, [tokens.Operator(tokens.Tetr)]),
           )
 
         "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0" -> {
