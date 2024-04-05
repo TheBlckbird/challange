@@ -5,10 +5,10 @@ import gleam/result
 import lexer/tokens
 
 pub fn lexer(input: String) -> Result(List(tokens.Token), Nil) {
-  lexer_loop(input, [])
+  lexer_recur(input, [])
 }
 
-fn lexer_loop(
+fn lexer_recur(
   remaining: String,
   tokens: List(tokens.Token),
 ) -> Result(List(tokens.Token), Nil) {
@@ -20,46 +20,46 @@ fn lexer_loop(
     Ok(char) -> {
       case char {
         ")" ->
-          lexer_loop(new_remaining, list.append(tokens, [tokens.CloseBracket]))
+          lexer_recur(new_remaining, list.append(tokens, [tokens.CloseBracket]))
         "(" ->
-          lexer_loop(new_remaining, list.append(tokens, [tokens.OpenBracket]))
+          lexer_recur(new_remaining, list.append(tokens, [tokens.OpenBracket]))
         "+" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Add)]),
           )
         "-" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Sub)]),
           )
         "*" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Mul)]),
           )
         "/" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Div)]),
           )
         "!" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Fact)]),
           )
         "%" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Mod)]),
           )
         "^" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Pow)]),
           )
         "v" ->
-          lexer_loop(
+          lexer_recur(
             new_remaining,
             list.append(tokens, [tokens.Operator(tokens.Tetr)]),
           )
@@ -71,7 +71,7 @@ fn lexer_loop(
 
           case number_result {
             Ok(number) ->
-              lexer_loop(
+              lexer_recur(
                 number.0,
                 list.append(tokens, [tokens.Number(number.1)]),
               )
@@ -80,7 +80,7 @@ fn lexer_loop(
           }
         }
 
-        " " | "\n" -> lexer_loop(new_remaining, tokens)
+        " " | "\n" -> lexer_recur(new_remaining, tokens)
 
         _ -> {
           Error(Nil)
